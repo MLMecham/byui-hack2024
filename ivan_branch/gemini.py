@@ -39,7 +39,7 @@ class GeminiAI:
   def generate_chat(self):
     
     i = 0
-    print(f"Bot: How can I help you today?\n")
+    print(f"PT: How can I help you today?\n")
     
     while i != 1: # change the condition  to break the loop when user wants to exit
       self.user_input = input("You: ")
