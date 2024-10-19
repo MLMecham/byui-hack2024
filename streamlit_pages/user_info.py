@@ -29,7 +29,7 @@ def save_data(client, weight, height, age, gender, option):
         {"$set": {"height": height, "weight": weight, "age": age, "gender": gender,
                   "body_goal": option, "1mg": onemg, "6mg": sixmg, "12mg": twelvemg}}
     )
-    st.write("Changes Saved Succesfully")
+    st.success("Changes Saved Succesfully")
 
 def info_page(client):
     st.image("streamlit_pages\images\FitForge2.png")

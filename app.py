@@ -104,7 +104,7 @@ elif st.session_state.page == "Info":
 
 elif st.session_state.page == "Lift Lab":
     if st.session_state.profile is not None:
-        lift_lab.lift_lab_page()  
+        lift_lab.lift_lab_page(client)  
     else:
         st.error("Please log in to use this feature.")
 
@@ -115,7 +115,7 @@ elif st.session_state.page == "Login":
         login.logout()
 elif st.session_state.page == "Fitness Fuel":
     if st.session_state.profile is not None:
-        fitness_fuel.fitness_fuel_page()  
+        fitness_fuel.fitness_fuel_page(client)  
     else:
         st.error("Please log in to use this feature.")
 
