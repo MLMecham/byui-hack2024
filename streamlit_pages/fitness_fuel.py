@@ -61,4 +61,38 @@ def fitness_fuel_page():
         else:
             st.error("Please enter a message.")
 
-    st.write(ask_api("TEST"))
+age = st.session_state.profile["age"]
+height = st.session_state.profile["height"]
+weight = st.session_state.profile["weight"]
+gender = st.session_state.profile["gender"]
+body_goal = st.session_state.profile["body_goal"]
+one_rm_goal = st.session_state.profile["1mg"]
+six_rm_goal = st.session_state.profile["6mg"]
+twelve_rm_goal = st.session_state.profile["12mg"]
+preferred_foods = st.session_state.profile["food"]
+
+# Properly format the string for the API call
+query = f"""
+    Create a personalized meal prep plan based on the following parameters:
+    
+    Age: {age}, Height: {height}, Weight: {weight}, Gender: {gender}, 
+    Body Goal: {body_goal} (Specify whether the goal is to lose weight, build muscle, improve endurance, or tone the body),
+    1-Rep Max Goal (1mg): {one_rm_goal} (Target weight the user wants to lift for one repetition in key exercises such as bench press, squat, or deadlift),
+    6-Rep Max Goal (6mg): {six_rm_goal} (Target weight for a set of six repetitions),
+    12-Rep Max Goal (12mg): {twelve_rm_goal} (Target weight for a set of twelve repetitions),
+    Preferred Foods/Ingredients: {preferred_foods} (List any dietary preferences or restrictions, such as vegetarian, high-protein, low-carb, or specific foods the user enjoys or avoids).
+
+    Design the meal prep plan to help the user achieve their body goal, complementing their workout program, and incorporating their preferred foods or dietary restrictions. The plan should include:
+
+    - Daily Meal Breakdown: Provide specific meal plans for each day (breakfast, lunch, dinner, and snacks), with exact ingredients and quantities for each meal.
+    - Nutritional Information: Include the total number of calories for each meal, along with a breakdown of macronutrients (protein, carbs, fats) to align with the user’s fitness goals.
+    - Meal Prep Duration: Indicate how long each meal prep batch should last (e.g., meal prep for 3 days, or individual meals for same-day consumption).
+    - Exercise Alignment: Explain how each meal supports their workout goals. For example, offer higher protein meals on strength-training days, higher carbs for endurance-focused days, and light meals for rest days.
+    - Shopping List: Provide a detailed grocery list based on the ingredients for the week, categorizing items for easy shopping.
+    - Special Notes: Suggest portion adjustments based on the intensity of workouts on a given day, offer quick snack ideas for pre- or post-workout fuel, and provide storage tips to keep meals fresh for longer.
+
+    The meal plan should be flexible but supportive of the user’s fitness and nutrition goals, ensuring they hit their daily caloric and nutritional targets while making the process efficient and enjoyable.
+"""
+
+# Call your ask_api function with the properly formatted query
+st.write(ask_api(query))
