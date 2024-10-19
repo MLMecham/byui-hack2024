@@ -35,7 +35,9 @@ def account_creation(client, username, password, email):
             "6mg": "",
             "12mg": "",
             "exercises": [],
-            "food": []
+            "food": [],
+            "fitness_plan": "No Data",
+            "meal_plan": "No Data"
             }
             
             collection.insert_one(account)

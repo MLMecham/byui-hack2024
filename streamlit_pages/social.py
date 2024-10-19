@@ -2,13 +2,11 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-from faker import Faker
 import random
 
 
 
 def social_page(client):
-
     db = client["FitForge"]
     collection = db["users"]
 
