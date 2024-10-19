@@ -29,7 +29,13 @@ def account_creation(client, username, password, email):
             "height": "0",
             "weight": "0",
             "gender": "Male",
-            "password": f"{password}"
+            "password": f"{password}",
+            "body_goal": "",
+            "1mg": "",
+            "6mg": "",
+            "12mg": "",
+            "exercises": [],
+            "food": []
             }
             
             collection.insert_one(account)
