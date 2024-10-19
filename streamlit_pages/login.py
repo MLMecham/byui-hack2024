@@ -1,7 +1,40 @@
 import streamlit as st
-from streamlit_pages import register
 
-def login():
+def account_creation(client, username, password, email):
+    """ Authenticates and Creates the account
+        Args():
+        client (MongoDB): The MongoDB client.
+        username (string): The username to be tested.
+        password (string): The password to be saved.
+        email (string): The email to be saved.
+    """
+    # Connect to the collection
+    db = client["FitForge"]
+    collection = db["users"]
+
+    # Test the username
+    document = collection.find_one({"username": f"{username}"})
+    if document == None:
+        # Create and add the account
+        account = {
+        "username": f"{username}",
+        "age": " ",
+        "email": f"{email}",
+        "height": " ",
+        "weight": " ",
+        "gender": " ",
+        "password": f"{password}"
+        }
+        
+        collection.insert_one(account)
+        st.write("Account Created!")
+    
+    else:    
+        st.write("Username Already Taken")
+
+
+
+def login(client):
     st.title("Login")
     username = st.text_input("Username", key="login_username")
     password = st.text_input("Password", type="password", key="login_password")
@@ -25,18 +58,13 @@ def login():
 
     new_username = st.text_input("Username", key="register_username")
     new_password = st.text_input("Password", type="password", key="register_password")
+    new_email = st.text_input("Email", key="register_email")
 
     st.write("Stored Username: ", new_username)
     st.write("Stored Password: ", new_password)
 
     if st.button("Create Account"):
         # Here you should implement your own logic to store new users
-        if new_username and new_password:
-            # In a real application, you would save this to a database
-            st.session_state['users'][new_username] = new_password
-            st.success("Account created successfully! You can now log in.")
-            st.session_state['current_page'] = "Login"  # Navigate back to login
-        else:
-            st.error("Please fill in both fields.")
+        account_creation(client, new_username, new_password, new_email)
 
     
