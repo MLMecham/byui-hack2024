@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_pages import enter_info, lift_lab, login, register
+from streamlit_pages import user_info, lift_lab, login, fitness_fuel
 
 # Function to set the query parameter based on the page
 def navigate_to(page):
@@ -19,9 +19,11 @@ if 'logged_in' not in st.session_state:
 with st.sidebar:
     page = st.sidebar.selectbox(
         "Navigate to:",
-        ["Home", "Info", "Lift Lab", "Login", "Settings"],
-        index=["Home", "Info", "Lift Lab", "Login", "Settings"].index(st.session_state.page)  # Use session state for default value
+        ["Home", "Info", "Lift Lab", "Fitness Fuel", "Login", "Settings"],
+        index=["Home", "Info", "Lift Lab", "Fitness Fuel", "Login", "Settings"].index(st.session_state.page)  # Use session state for default value
     )
+
+
 
 # Update the page in both session state and query parameters
 if page != st.session_state.page:
@@ -30,14 +32,14 @@ if page != st.session_state.page:
 
 # Render the current page based on session state
 if st.session_state.page == "Home":
-    st.write("home")  # Replace with show_home() function
+    st.write("home") 
 elif st.session_state.page == "Info":
-    enter_info.info_page()  # Render Info page content
+    user_info.info_page()  
 elif st.session_state.page == "Lift Lab":
-    lift_lab.lift_lab_page()  # Replace with show_diet() function
+    lift_lab.lift_lab_page()  
 elif st.session_state.page == "Login":
-    login.login()  # Replace with show_stats() function
-# elif st.session_state.page == "Register":
-#     register.register_page()  # Replace with show_settings() function
+    login.login()  
+elif st.session_state.page == "Fitness Fuel":
+    fitness_fuel.fitness_fuel_page()  
 elif st.session_state.page == "About":
-    st.write("about page")  # Replace with show_about() function
+    st.write("about page")  

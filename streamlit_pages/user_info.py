@@ -4,40 +4,57 @@ import numpy as np
 
 
 def info_page():
-    st.image("streamlit_pages\images\FitForge.png")
-    st.title("Set Stats")
+    st.image("streamlit_pages\images\FitForge2.png")
+    # st.title("Set User Info")
+    st.markdown(
+        """
+        <h1 style='text-align: center;'>Set User Info</h1>
+        """,
+        unsafe_allow_html=True
+    )
 
-    st.header("LiftLab")
-    st.subheader("What ")
-    st.write("sub")
+    st.subheader('''
+             Welcome to your personal fitness journey! 🌟
 
-    if st.button("set stats"):
-        st.write("Nice")
+Here, you have the power to customize your profile and set yourself up for success. Remember, every step you take is a step closer to achieving your goals! Whether you're aiming to build strength, improve your endurance, or simply feel better in your own skin, this is the first step in that direction.
 
+Believe in yourself! You have the ability to create the changes you want to see in your life. Embrace this moment as a chance to reflect on your goals, understand your body, and set meaningful targets.
+
+Let's get started on this amazing adventure together. Input your information below, and let's make those fitness dreams a reality! 💪
+             
+             ''')
+
+    # st.header("LiftLab")
+    # st.subheader("What ")
+    # st.write("sub")
+
+    # if st.button("set stats"):
+    #     st.write("Nice")
+
+    st.write("---")
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        st.write("this is the lift lab")
-        age = st.slider("select your age", 0, 350, 180)
+        st.write("Select Your Age")
+        age = st.slider("", 0, 100, 20)
         st.write("age: ", age)
 
-    st.write(" ")
     with col2:
-        st.write("Select Your Weight!")
-        weight= st.slider("select your age", 0, 100, 20)
+        st.write("Select Your Weight")
+        weight= st.slider("", 0, 350, 180)
         st.write("weight: ", weight)
 
     with col3:
         st.write("Choose Your Gender")
 
-        gender = st.radio("Select your gender:",
+        gender = st.radio("",
                         ("Male", "Female"))
 
         st.write("Gender: ", gender)
         # with st.expander("Expand"):
         #     st.write("cool explaination")
 
-
+    st.write("---")
     option = st.selectbox("Choose your fitness goal",
                         ("Lean", "Bulk", "cut", "tone"))
 
