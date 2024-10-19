@@ -31,7 +31,26 @@ def account_creation(client, username, password, email):
     else:    
         st.write("Username Already Taken")
 
+def authentication(client, username, password):
+    """ Authenticates and Creates the account
+        Args():
+        client (MongoDB): The MongoDB client.
+        username (string): The username to be tested.
+        password (string): The password to be tested.
+    """
+    # Connect to the collection
+    db = client["FitForge"]
+    collection = db["users"]
 
+    document = collection.find_one({
+        "username": username,
+        "password": password
+    })
+    if document != None:
+        st.write("Logged In Succesfully!")
+        return True
+    st.write("Invalid Username or Password")
+    return False
 
 def login(client):
     st.title("Login")
@@ -42,11 +61,7 @@ def login(client):
     st.write("Stored Password: ", password)
 
     if st.button("Login"):
-        if username == "admin" and password == "password":  # Replace with your authentication logic
-            st.session_state['logged_in'] = True
-            st.success("Login successful!")
-        else:
-            st.error("Invalid username or password")
+        authentication(client, username, password)
 
     # if st.button("Create New Account"):
     #     # st.session_state.page = "Register"
