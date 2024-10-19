@@ -34,7 +34,7 @@ current_page = query_params.get("page", ["home"])[0]  # Default to 'home'
 
 # Define different pages based on parameter
 if current_page == "home":
-    st.image(r"images\FitForge.png")
+    st.image("images/FitForge.png")
     st.title("Home Page")
     st.write("Welcome to the home page!")
 
