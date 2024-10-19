@@ -3,7 +3,6 @@ import pandas as pd
 import numpy as np
 
 
-
 st.title("Set Stats")
 
 st.header("LiftLab")
