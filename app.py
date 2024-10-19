@@ -45,7 +45,7 @@ def display_profile():
         st.write("If not head to User Info to enter goals and details.")
         st.write("Head over to the Lift Lab or the Fitness Fuel station to see get imediate feedback on how to achieve your goals.")
         # st.write(f"{st.session_state.profile}")
-        
+
     else:
         st.write("### Time to Fulfill Your Destiny!")
         st.write("**At Fit Forge, you are about to embark on a transformative adventure!**")

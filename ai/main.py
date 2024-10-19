@@ -1,4 +1,4 @@
-from gemini import GeminiAI
+from ivan_branch.gemini import GeminiAI
 
 # Test out if the class GeminiAi works or not
 model_name = "gemini-1.5-pro"
