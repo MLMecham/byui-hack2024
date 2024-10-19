@@ -29,7 +29,7 @@ def fitness_fuel_page(client):
         elif st.session_state.profile['gender'] == "Female":
             return  665 +  (4.35 * int(weight)) + (4.7 * int(height)) - (4.7 * int(age))
 
-    st.image("streamlit_pages\images\FitFuel.png")
+    st.image(r"streamlit_pages\images\FitFuel.png")
 
     st.subheader("Let's Count Calories")
     st.write("""
