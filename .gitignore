@@ -4,4 +4,4 @@ __pycache__
 mongokey.txt
 database.py
 venv/
-.env/
+.env*
