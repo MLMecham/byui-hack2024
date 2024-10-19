@@ -8,5 +8,6 @@ def start_chat():
     fit_forge_ai.generate_chat()
 
 if __name__ == "__main__":
+    ...
     # start_chat()
-    fit_forge_ai.single_message("Build me a lifting training for today, I'm 20 years old.")
+    # fit_forge_ai.single_message("Build me a lifting training for today, I'm 20 years old.")

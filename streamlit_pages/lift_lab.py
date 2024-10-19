@@ -1,4 +1,17 @@
 import streamlit as st
+from ai.gemini import GeminiAI
+
+def ask_api(message):
+    """ Creates the AI chat and receives a response from the message.
+        args():
+        message (string): The message to ask the AI.
+
+        returns:
+            response (string): The response from the AI.
+    """
+    model_name = "gemini-1.5-pro"
+    fit_forge_ai = GeminiAI(model_name=model_name)
+    return fit_forge_ai.single_message(message)
 
 def lift_lab_page():
 
@@ -76,3 +89,5 @@ def lift_lab_page():
             st.write("Bot: Thank you for your message!")
         else:
             st.error("Please enter a message.")
+
+    st.write(ask_api("TEST"))

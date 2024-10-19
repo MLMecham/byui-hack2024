@@ -68,11 +68,15 @@ class GeminiAI:
     self.api_key = os.getenv(new_api_key)
   
   def single_message(self, message):
+    """ Gets a single request from the genai API.
+        args():
+        message (string): What you will ask the AI.
+        returns:
+          response (string): Returns the response from the AI.
+    """
     chat_session = self.model.start_chat(history=[])
     response = chat_session.send_message(message)
-        
-    self.model_response =  response.text
-    print(f'Bot: {self.model_response}\n')
+    return response.text
 
 
 # model = genai.GenerativeModel(
