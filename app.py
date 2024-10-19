@@ -47,11 +47,12 @@ def display_profile():
         st.write(f"{st.session_state.profile}")
         
     else:
-        st.image("streamlit_pages\images\FitForge2.png")
+        st.write("### Time to Fulfill Your Destiny!")
+        st.write("**At Fit Forge, you are about to embark on a transformative adventure!**")
+        st.write("Imagine sculpting your body into a masterpiece, inspired by the gods and forged in the fires of dedication.")
+        st.write("**Are you ready to take the first step towards your fitness revolution?** What goals ignite your passion? What challenges are you prepared to conquer on your path to greatness?")
+        st.write("**Are you willing to unleash your full potential?** Visit the **Login** tab to begin your journey, and together, we will forge the body you've always envisioned!")
 
-        st.write("Welcome to the Fit Forge.")
-        st.write("Are you ready to begin a journy a a body in the image of the Gods and forged in the flames of effort?")
-        st.write("No user is logged in. Please go to the login tab to begin the fun.")
 
 
 
