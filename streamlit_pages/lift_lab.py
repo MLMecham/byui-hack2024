@@ -1,6 +1,12 @@
 import streamlit as st
 
-def lift_lab_page():
+def lift_lab_page(client):
+
+    db = client["FitForge"]
+    collection = db["users"]
+
+    exercises = st.session_state.profile['exercises']
+    # st.write(exercises)
 
     def sendAPI():
         ...
@@ -26,8 +32,8 @@ def lift_lab_page():
 
     # List to hold the items (exercises)
     # TODO make this list initialize from the database excersizes the user likes
-    if 'exercises' not in st.session_state:
-        st.session_state.exercises = []
+    # if 'exercises' not in st.session_state:
+    #     st.session_state.exercises = []
 
     # Input box to add new exercises
     new_exercise = st.text_input("Add a new exercise:")
@@ -35,23 +41,32 @@ def lift_lab_page():
     # Button to add the exercise to the list
     if st.button("Add Exercise"):
         if new_exercise:
-            if new_exercise not in st.session_state.exercises:
-                st.session_state.exercises.append(new_exercise)
+            if new_exercise not in st.session_state.profile['exercises']:
+                st.session_state.profile['exercises'].append(new_exercise)
                 st.success(f"Added '{new_exercise}' to your list!")
+                collection.update_one(
+                {"username": st.session_state.profile["username"]}, 
+                {"$set": {"exercises": st.session_state.profile['exercises']
+                  }}
+                )
             else:
                 st.error("Please do not duplicate exercises.")
         else:
             st.error("Please enter a valid exercise. No duplicates allowed.")
 
     # Display the current list of exercises
-    if st.session_state.exercises:
+    if st.session_state.profile['exercises']:
         st.subheader("Current Exercises:")
-        exercise_to_remove = st.selectbox("Select an exercise to remove:", st.session_state.exercises)
+        exercise_to_remove = st.selectbox("Select an exercise to remove:", st.session_state.profile['exercises'])
 
         if st.button("Remove Exercise"):
-            st.session_state.exercises.remove(exercise_to_remove)
+            st.session_state.profile['exercises'].remove(exercise_to_remove)
             st.success(f"Removed '{exercise_to_remove}' from your list!")
-
+            collection.update_one(
+                {"username": st.session_state.profile["username"]}, 
+                {"$set": {"exercises": st.session_state.profile['exercises']
+                  }}
+                )
         # Display the list of exercises
         # st.write(st.session_state.exercises)
     else:
