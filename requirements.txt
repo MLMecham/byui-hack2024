@@ -1,4 +1,4 @@
-pymongo==4.2.0
+pymongo[srv]
 google-generativeai
 python-dotenv
 matplotlib
