@@ -20,9 +20,32 @@ def mongo_init():
     
 def display_profile():
     if st.session_state.profile is not None:
-        st.write("Profile Information:")
-        st.write(st.session_state.profile)
+        st.image("streamlit_pages\images\FitForge2.png")
+
+        # st.write("Profile Information:")
+        # st.write(st.session_state.profile)
+        header = ("Welcome " + st.session_state.profile['username'])
+        st.header(header)
+        st.write('Review your personal specs before finding a workout for today.')
+        st.write('---')
+        age = st.session_state.profile['age']
+        weight = st.session_state.profile['weight']
+
+        st.write(f"Age: {age}")
+        st.write(f"Weight: {weight}")
+
+        st.write(f'1 Month Goal:')
+        st.write(f'6 Month Goal:')
+        st.write(f'12 Month Goal:')
+
+        st.write("---")
+        st.write("Does that information look correct?")
+        st.write("If not head to User Info to enter goals and details.")
+        st.write("Head over to the Lift Lab or the Fitness Fuel station to see get imediate feedback on how to achieve your goals.r")
+        
     else:
+        st.image("streamlit_pages\images\FitForge2.png")
+
         st.write("Welcome to the Fit Forge.")
         st.write("Are you ready to begin a journy a a body in the image of the Gods and forged in the flames of effort?")
         st.write("No user is logged in. Please go to the login tab to begin the fun.")
@@ -39,6 +62,8 @@ def navigate_to(page):
 # profile = None
 query_params = st.experimental_get_query_params()
 current_page = query_params.get("page", ["Home"])[0]  # Default to 'Home'
+
+
 
 # Initialize session state for the page if not already set
 if 'page' not in st.session_state:
