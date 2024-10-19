@@ -1,5 +1,24 @@
 import streamlit as st
-from streamlit_pages import enter_info, lift_lab, login, register
+from streamlit_pages import enter_info, lift_lab, login
+from pathlib import Path
+import pymongo
+
+# Function to initialize the MongosDB
+@st.cache_resource
+def mongo_init():
+    # Get the current file's directory
+    current_dir = Path(__file__).resolve()
+    print(current_dir)
+
+    # Construct the path to mongokey.txt
+    secrets_file_path = current_dir.parent / ".streamlit" / "mongokey.txt"
+
+    # Open the mongokey.txt file
+    with secrets_file_path.open('r') as f:
+        key = f.read()
+        return pymongo.MongoClient(key)
+
+client = mongo_init()
 
 # Function to set the query parameter based on the page
 def navigate_to(page):
@@ -36,7 +55,7 @@ elif st.session_state.page == "Info":
 elif st.session_state.page == "Lift Lab":
     lift_lab.lift_lab_page()  # Replace with show_diet() function
 elif st.session_state.page == "Login":
-    login.login()  # Replace with show_stats() function
+    login.login(client)  # Replace with show_stats() function
 # elif st.session_state.page == "Register":
 #     register.register_page()  # Replace with show_settings() function
 elif st.session_state.page == "About":
