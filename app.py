@@ -10,7 +10,7 @@ def mongo_init():
 def display_profile():
 
     if st.session_state.profile is not None:
-        st.image(r"streamlit_pages\images\FitForge2.png")
+        st.image("streamlit_pages/images/FitForge2.png")
 
         # st.write("Profile Information:")
         # st.write(st.session_state.profile)
