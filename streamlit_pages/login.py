@@ -1,4 +1,6 @@
 import streamlit as st
+import re
+
 def account_creation(client, username, password, email):
     """ Authenticates and Creates the account
         Args():
@@ -11,25 +13,34 @@ def account_creation(client, username, password, email):
     db = client["FitForge"]
     collection = db["users"]
 
-    # Test the username
-    document = collection.find_one({"username": f"{username}"})
-    if document == None:
-        # Create and add the account
-        account = {
-        "username": f"{username}",
-        "age": 18,
-        "email": f"{email}",
-        "height": "0",
-        "weight": "0",
-        "gender": "Male",
-        "password": f"{password}"
-        }
+    # Validate the Email
+    email_regex = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+
+    # Use re.match() to check if the email matches the pattern
+    if re.match(email_regex, email):
+            # Test the username
+        document = collection.find_one({"username": f"{username}"})
+        if document == None:
+            # Create and add the account
+            account = {
+            "username": f"{username}",
+            "age": 18,
+            "email": f"{email}",
+            "height": "0",
+            "weight": "0",
+            "gender": "Male",
+            "password": f"{password}"
+            }
+            
+            collection.insert_one(account)
+            st.write("Account Created!")
         
-        collection.insert_one(account)
-        st.write("Account Created!")
-    
-    else:    
-        st.write("Username Already Taken")
+        else:    
+            st.write("Username Already Taken")
+    else:
+        st.write("Invalid Email")
+
+
 
 def authentication(client, username, password):
     """ Authenticates and Creates the account
