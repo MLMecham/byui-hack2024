@@ -34,15 +34,17 @@ def display_profile():
         st.write(f"Username: {st.session_state.profile['username']}")
         st.write(f"Age: {age}")
         st.write(f"Weight: {weight}")
+        st.write(f"Body Goal: {st.session_state.profile['body_goal']}")
 
-        st.write(f'1 Month Goal:')
-        st.write(f'6 Month Goal:')
-        st.write(f'12 Month Goal:')
+        st.write(f'1 Month Goal: {st.session_state.profile["1mg"]}')
+        st.write(f'6 Month Goal: {st.session_state.profile["6mg"]}')
+        st.write(f'12 Month Goal: {st.session_state.profile["12mg"]}')
 
         st.write("---")
         st.write("Does that information look correct?")
         st.write("If not head to User Info to enter goals and details.")
-        st.write("Head over to the Lift Lab or the Fitness Fuel station to see get imediate feedback on how to achieve your goals.r")
+        st.write("Head over to the Lift Lab or the Fitness Fuel station to see get imediate feedback on how to achieve your goals.")
+        st.write(f"{st.session_state.profile}")
         
     else:
         st.image("streamlit_pages\images\FitForge2.png")
