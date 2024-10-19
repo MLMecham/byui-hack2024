@@ -1,7 +1,8 @@
 *.log
 __pycache__/
+__pycache__*
 *.py[cod]
 mongokey.txt
 database.py
-venv/
-.env/
+venv*
+.env*
