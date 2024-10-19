@@ -1,4 +1,5 @@
 import os
+import streamlit as st
 import google.generativeai as genai
 # pip install -q -U google-generativeai
 
@@ -6,7 +7,7 @@ from dotenv import load_dotenv
 # pip install python-dotenv
 
 load_dotenv()
-genai.configure(api_key=os.environ["GEMINI_API_KEY"])
+genai.configure(api_key=st.secrets["GEMINI_API_KEY"])
 
 # Create the model
 generation_config = {
