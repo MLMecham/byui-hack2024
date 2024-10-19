@@ -53,24 +53,38 @@ def authentication(client, username, password):
     return False
 
 def login(client):
-    st.title("Login")
-    username = st.text_input("Username", key="login_username")
-    password = st.text_input("Password", type="password", key="login_password")
+    if 'profile' in st.session_state and st.session_state.profile is not None:
+        st.subheader(f"You Are Already Logged In as {st.session_state.profile['username']}")
+        if st.button("Sign Out"):
+            st.session_state.profile = None  # Correctly log out the user
+    else:
 
-    if st.button("Login"):
-        profile = authentication(client, username, password)  # Capture the returned profile
-        if profile:  # If authentication is successful
-            st.session_state.profile = profile  # Store the profile in session state
-            st.success("Logged in successfully!")
-            return profile  # Return the profile for further use
-        else:
-            st.error("Invalid Username or Password")  # Show error message for invalid login
+        st.title("Login")
+        username = st.text_input("Username", key="login_username")
+        password = st.text_input("Password", type="password", key="login_password")
 
-    st.title("Create New User")
+        if st.button("Login"):
+            profile = authentication(client, username, password)  # Capture the returned profile
+            if profile:  # If authentication is successful
+                st.session_state.profile = profile  # Store the profile in session state
+                st.success("Logged in successfully!")
+                return profile  # Return the profile for further use
+            else:
+                st.error("Invalid Username or Password")  # Show error message for invalid login
 
-    new_username = st.text_input("Username", key="register_username")
-    new_password = st.text_input("Password", type="password", key="register_password")
-    new_email = st.text_input("Email", key="register_email")
+        st.title("Create New User")
 
-    if st.button("Create Account"):
-        account_creation(client, new_username, new_password, new_email)
+        new_username = st.text_input("Username", key="register_username")
+        new_password = st.text_input("Password", type="password", key="register_password")
+        new_email = st.text_input("Email", key="register_email")
+
+        if st.button("Create Account"):
+            account_creation(client, new_username, new_password, new_email)
+
+def logout():
+    if st.session_state.profile is not None:
+        if 'profile' in st.session_state and st.session_state.profile is not None:
+            st.subheader(f"You Are Already Logged In as {st.session_state.profile['username']}")
+            if st.button("Sign Out"):
+                st.session_state.profile = None  # Correctly log out the user
+                st.success("You have been logged out.")
