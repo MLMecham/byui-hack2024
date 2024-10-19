@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 
-def info_page():
+def info_page(client):
     st.image("streamlit_pages\images\FitForge2.png")
     # st.title("Set User Info")
     st.markdown(
@@ -32,22 +32,29 @@ Let's get started on this amazing adventure together. Input your information bel
     # if st.button("set stats"):
     #     st.write("Nice")
 
+    st.write(st.session_state.profile)
+
     st.write("---")
     col1, col2, col3 = st.columns(3)
 
     with col1:
+        old_age = int(st.session_state.profile['age'])
         st.write("Select Your Age")
-        age = st.slider("", 0, 100, 20)
+        age = st.slider("", 0, 100, old_age)
         st.write("age: ", age)
 
     with col2:
+        old_weight = int(st.session_state.profile['weight'])
         st.write("Select Your Weight")
-        weight= st.slider("", 0, 350, 180)
+        weight= st.slider("", 0, 350, old_weight)
         st.write("weight: ", weight)
 
     with col3:
         st.write("Choose Your Gender")
-
+        # if gender == "Male":
+        #     index = 0
+        # else:
+        #     index = 1
         gender = st.radio("",
                         ("Male", "Female"))
 
@@ -85,6 +92,7 @@ Let's get started on this amazing adventure together. Input your information bel
     if st.button("Save Changes"):
         # Save after this button is clicked
         ...
+        
 
 
 
