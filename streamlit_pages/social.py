@@ -7,7 +7,6 @@ import random
 
 
 def social_page(client):
-
     db = client["FitForge"]
     collection = db["users"]
 

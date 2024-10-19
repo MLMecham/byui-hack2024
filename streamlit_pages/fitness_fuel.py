@@ -88,6 +88,12 @@ def fitness_fuel_page(client):
                 )
     else:
         st.write("No liked foods added yet.")
+    
+    st.write("---")
+
+    st.subheader("Current Meal Plan")
+    document = collection.find_one({"username": st.session_state.profile["username"]})
+    st.write(document["meal_plan"])
 
     st.write("---")
 
@@ -132,3 +138,7 @@ def fitness_fuel_page(client):
         # Call your ask_api function with the properly formatted query
         response = ask_api(query)
         st.write(response)
+        collection.update_one(
+            {"username": st.session_state.profile["username"]}, 
+            {"$set": {"meal_plan": response}}
+        )

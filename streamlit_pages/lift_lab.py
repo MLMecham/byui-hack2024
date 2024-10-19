@@ -86,6 +86,12 @@ def lift_lab_page(client):
         st.write("No exercises added yet.")
 
     st.write("---")
+
+    st.subheader("Current Fitness Plan")
+    document = collection.find_one({"username": st.session_state.profile["username"]})
+    st.write(document["fitness_plan"])
+
+    st.write("---")
     st.subheader("Power Move Challenge")
     st.write("🔥 **Are you feeling unstoppable today?** 🔥")
     st.write("Do you want to push your limits and take on a serious challenge? 💪 **Hit the **Power Move** button and unlock a workout that'll test your strength and endurance.** Let's make today the day you crush your goals and set new records!")
@@ -127,3 +133,7 @@ def lift_lab_page(client):
         # Call your ask_api function with the properly formatted query
         response = ask_api(query)
         st.write(response)
+        collection.update_one(
+            {"username": st.session_state.profile["username"]}, 
+            {"$set": {"fitness_plan": response}}
+        )
