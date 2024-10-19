@@ -25,7 +25,7 @@ def lift_lab_page(client):
     def sendAPI():
         ...
 
-    st.image(r"streamlit_pages\images\LiftLab2.png")
+    st.image("streamlit_pages/images/LiftLab2.png")
 
     # st.title("Lift Lab")
     st.markdown(

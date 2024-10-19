@@ -32,7 +32,7 @@ def save_data(client, weight, height, age, gender, option):
     st.success("Changes Saved Succesfully")
 
 def info_page(client):
-    st.image(r"streamlit_pages\images\FitForge2.png")
+    st.image("streamlit_pages/images/FitForge2.png")
     # st.title("Set User Info")
     st.markdown(
         """
