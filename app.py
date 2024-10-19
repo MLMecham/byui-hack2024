@@ -1,5 +1,5 @@
 import streamlit as st
-from streamlit_pages import user_info, lift_lab, login, fitness_fuel
+from streamlit_pages import user_info, lift_lab, login, fitness_fuel, social
 from pathlib import Path
 import pymongo
 
@@ -44,7 +44,7 @@ def display_profile():
         st.write("Does that information look correct?")
         st.write("If not head to User Info to enter goals and details.")
         st.write("Head over to the Lift Lab or the Fitness Fuel station to see get imediate feedback on how to achieve your goals.")
-        st.write(f"{st.session_state.profile}")
+        # st.write(f"{st.session_state.profile}")
         
     else:
         st.write("### Time to Fulfill Your Destiny!")
@@ -79,8 +79,8 @@ if 'profile' not in st.session_state:
 with st.sidebar:
     page = st.sidebar.selectbox(
         "Navigate to:",
-        ["Home", "Login", "Info", "Lift Lab", "Fitness Fuel", "Settings"],
-        index=["Home", "Login", "Info", "Lift Lab", "Fitness Fuel", "Settings"].index(st.session_state.page)  # Use session state for default value
+        ["Home", "Login", "User Info", "Lift Lab", "Fitness Fuel", "Social"],
+        index=["Home", "Login", "User Info", "Lift Lab", "Fitness Fuel", "Social"].index(st.session_state.page)  # Use session state for default value
     )
 
 
@@ -96,7 +96,7 @@ if page != st.session_state.page:
 if st.session_state.page == "Home":
     display_profile()
     
-elif st.session_state.page == "Info":
+elif st.session_state.page == "User Info":
     if st.session_state.profile is not None:
         user_info.info_page(client)  
     else:
@@ -119,7 +119,7 @@ elif st.session_state.page == "Fitness Fuel":
     else:
         st.error("Please log in to use this feature.")
 
-elif st.session_state.page == "About":
-    st.write("about page")
+elif st.session_state.page == "Social":
+    social.social_page(client)
 
 

@@ -73,7 +73,7 @@ Let's get started on this amazing adventure together. Input your information bel
     with col3:
         old_height = int(st.session_state.profile["height"])
         st.write("Select Height Inches")
-        height = st.slider("", 30, 85, old_height)
+        height = st.slider("", 40, 85, old_height)
         st.write("height: ", height)
         height = str(height)
 
