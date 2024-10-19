@@ -13,9 +13,10 @@ def info_page():
         unsafe_allow_html=True
     )
 
+    st.write("---")
     st.subheader('''
              Welcome to your personal fitness journey! 🌟
-
+                 
 Here, you have the power to customize your profile and set yourself up for success. Remember, every step you take is a step closer to achieving your goals! Whether you're aiming to build strength, improve your endurance, or simply feel better in your own skin, this is the first step in that direction.
 
 Believe in yourself! You have the ability to create the changes you want to see in your life. Embrace this moment as a chance to reflect on your goals, understand your body, and set meaningful targets.
