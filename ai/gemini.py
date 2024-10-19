@@ -66,6 +66,14 @@ class GeminiAI:
   def change_api_key(self):
     new_api_key = input("Enter the new API key: ")
     self.api_key = os.getenv(new_api_key)
+  
+  def single_message(self, message):
+    chat_session = self.model.start_chat(history=[])
+    response = chat_session.send_message(message)
+        
+    self.model_response =  response.text
+    print(f'Bot: {self.model_response}\n')
+
 
 # model = genai.GenerativeModel(
 #   model_name="gemini-1.5-pro",
