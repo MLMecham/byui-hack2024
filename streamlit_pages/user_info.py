@@ -2,6 +2,29 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
+def save_data(client, weight, height, age, gender):
+    """ Saves the data to the account.
+        Args():
+        client (MongoDB): MongoDB Client
+        weight (string): Weight in pounds.
+        height (string): Height in inches.
+        age (int): Age.
+        gender (string): Gender.
+    """
+    # Get the connection going.
+    db = client["FitForge"]
+    collection = db["users"]
+    # Update the profile
+    st.session_state.profile["height"] = height
+    st.session_state.profile["weight"] = weight
+    st.session_state.profile["age"] = age
+    st.session_state.profile["gender"] = gender
+
+    collection.update_one(
+        {"username": st.session_state.profile["username"]}, 
+        {"$set": {"height": height, "weight": weight, "age": age, "gender": gender}}
+    )
+    st.write("Changes Saved Succesfully")
 
 def info_page(client):
     st.image("streamlit_pages\images\FitForge2.png")
@@ -25,14 +48,6 @@ Let's get started on this amazing adventure together. Input your information bel
              
              ''')
 
-    # st.header("LiftLab")
-    # st.subheader("What ")
-    # st.write("sub")
-
-    # if st.button("set stats"):
-    #     st.write("Nice")
-
-    st.write(st.session_state.profile)
 
     st.write("---")
     col1, col2, col3 = st.columns(3)
@@ -45,22 +60,29 @@ Let's get started on this amazing adventure together. Input your information bel
 
     with col2:
         old_weight = int(st.session_state.profile['weight'])
-        st.write("Select Your Weight")
+        st.write("Select Your Weight in Pounds")
         weight= st.slider("", 0, 350, old_weight)
         st.write("weight: ", weight)
+        weight = str(weight)
 
     with col3:
-        st.write("Choose Your Gender")
-        # if gender == "Male":
-        #     index = 0
-        # else:
-        #     index = 1
-        gender = st.radio("",
-                        ("Male", "Female"))
+        old_height = int(st.session_state.profile["height"])
+        st.write("Select Your Height in Inches")
+        height = st.slider("", 30, 85, old_height)
+        st.write("height: ", height)
+        height = str(height)
 
-        st.write("Gender: ", gender)
-        # with st.expander("Expand"):
-        #     st.write("cool explaination")
+    col4, col5, col6 = st.columns(3)
+    with col5:
+        old_gender = st.session_state.profile["gender"]
+        if old_gender == "Male":
+            old_index = 0
+        else:
+            old_index = 1
+        gender = st.radio("Choose Your Gender",
+                        ("Male", "Female"),
+                        index = old_index)
+
 
     st.write("---")
     option = st.selectbox("Choose your fitness goal",
@@ -91,41 +113,4 @@ Let's get started on this amazing adventure together. Input your information bel
 
     if st.button("Save Changes"):
         # Save after this button is clicked
-        ...
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-# st.write("""
-#          Myfirstapp
-#          SUP
-#          """)
-
-# st.write("Hello, *World!* :sunglasses:")
-
-# "sup dawg"
-
-
-# data_frame = pd.DataFrame(
-#         {
-#             "first column": [1, 2, 3, 4],
-#             "second column": [10, 20, 30, 40],
-#         }
-#     )
-
-# st.write("1 + 1 = ", 2)
-# st.write("Below is a DataFrame:", data_frame, "Above is a dataframe.")
-
-
-# if st.button("Click Me"):
-#     st.write("YOU SHOULD NOT HAVE COME")
+        save_data(client, weight, height, age, gender)
