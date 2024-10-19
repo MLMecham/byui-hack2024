@@ -31,6 +31,7 @@ def display_profile():
         age = st.session_state.profile['age']
         weight = st.session_state.profile['weight']
 
+        st.write(f"Username: {st.session_state.profile['username']}")
         st.write(f"Age: {age}")
         st.write(f"Weight: {weight}")
 
@@ -105,8 +106,10 @@ elif st.session_state.page == "Lift Lab":
         st.error("Please log in to use this feature.")
 
 elif st.session_state.page == "Login":
-    st.session_state.profile = login.login(client)  # This will update the profile in session state
-
+    if st.session_state.profile is None:
+        st.session_state.profile = login.login(client)  # This will update the profile in session state
+    else:
+        login.logout()
 elif st.session_state.page == "Fitness Fuel":
     if st.session_state.profile is not None:
         fitness_fuel.fitness_fuel_page()  
