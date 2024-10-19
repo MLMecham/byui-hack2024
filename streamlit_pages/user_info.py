@@ -86,7 +86,7 @@ Let's get started on this amazing adventure together. Input your information bel
 
     st.write("---")
     option = st.selectbox("Choose your fitness goal",
-                        ("Lean", "Bulk", "cut", "tone"))
+                        ("Lean", "Bulk", "Cut", "Tone"))
 
     st.write("Choose the food you like")
 
@@ -96,7 +96,8 @@ Let's get started on this amazing adventure together. Input your information bel
         running = st.checkbox("Running")
         cycling = st.checkbox("Cycling")
         weightlifting = st.checkbox("Weightlifting")
-
+        
+        exercises = []
     with pillar2:
         if running:
             st.write("You selected Running")
