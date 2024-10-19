@@ -87,7 +87,7 @@ def lift_lab_page(client):
 
     st.write("---")
 
-    st.subheader("Current Fitness Plan")
+    st.subheader("Current Workout Plan")
     document = collection.find_one({"username": st.session_state.profile["username"]})
     st.write(document["fitness_plan"])
 
@@ -99,7 +99,7 @@ def lift_lab_page(client):
     if st.button("Power Move"): 
         st.success("Bring on the pain!")
             
-    if st.button("Generate Meal Plan!"):
+    if st.button("Generate Workout Plan!"):
         generated = True
 
     if generated == True:
