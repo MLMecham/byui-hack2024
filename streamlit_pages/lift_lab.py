@@ -1,5 +1,6 @@
 import streamlit as st
 from ai.gemini import GeminiAI
+import random
 
 def ask_api(message):
     """ Creates the AI chat and receives a response from the message.
@@ -96,8 +97,66 @@ def lift_lab_page(client):
     st.write("🔥 **Are you feeling unstoppable today?** 🔥")
     st.write("Do you want to push your limits and take on a serious challenge? 💪 **Hit the **Power Move** button and unlock a workout that'll test your strength and endurance.** Let's make today the day you crush your goals and set new records!")
     
-    if st.button("Power Move"): 
+    # List of intense Power Move challenges
+    challenges = [
+        "Complete 100 push-ups, 100 sit-ups, and 100 air squats—no rest between exercises!",
+        "Hold a plank for 5 minutes. Stay strong!",
+        "Perform 50 burpees, followed by a 1-minute wall sit!",
+        "Do 100 jumping jacks, 100 mountain climbers, and 100 air squats back-to-back!",
+        "Complete 10 sprints of 30 seconds each, with only 10 seconds rest in between!",
+        "Perform 5 rounds of 20 push-ups, 20 squats, and 20 lunges!",
+        "Run 2 miles as fast as you can!",
+        "Hold a wall sit for 3 minutes straight!",
+        "Perform 200 air squats. Take minimal rest!",
+        "Do 100 push-ups, 100 sit-ups, 100 squats, and 100 lunges—no breaks!",
+        "Complete a 10-minute AMRAP (As Many Rounds As Possible) of 10 push-ups, 10 sit-ups, and 10 squats!",
+        "Hold a side plank for 3 minutes per side!",
+        "Perform 100 jumping jacks and 100 mountain climbers without stopping!",
+        "Sprint 50 meters, then do 20 push-ups. Repeat 5 times!",
+        "Do 3 rounds of 25 burpees and 25 jump squats!",
+        "Hold a squat position for 5 minutes!",
+        "Perform 5 sets of 10 push-ups, 10 sit-ups, and 10 air squats—without resting between sets!",
+        "Do a 4-minute Tabata (20 seconds of work, 10 seconds of rest) of squats and burpees!",
+        "Complete 150 squats as fast as possible!",
+        "Hold a 5-minute plank, with a 10-second rest after every 1 minute!",
+        "Run for 30 minutes without stopping!",
+        "Perform 100 push-ups, 50 sit-ups, and 25 burpees in one go!",
+        "Hold a handstand for as long as you can (against a wall if needed)!",
+        "Do 200 mountain climbers without stopping!",
+        "Perform 3 rounds of 50 jumping jacks and 50 squats!",
+        "Run up and down the stairs for 10 minutes non-stop!",
+        "Hold a plank for 2 minutes, then immediately do 50 push-ups!",
+        "Perform 3 rounds of 20 burpees and 30 air squats!",
+        "Do 1-minute high-knees, then 1-minute jumping jacks—repeat for 5 rounds!",
+        "Complete 100 step-ups (50 each leg) onto a bench or step!",
+        "Hold a wall sit for as long as you can!",
+        "Perform 10 minutes of non-stop bodyweight squats!",
+        "Do 5 rounds of 10 push-ups, 10 burpees, and 10 lunges!",
+        "Complete 100 push-ups and 100 squats in one go!",
+        "Run a mile as fast as you can!",
+        "Do 10 rounds of 30 seconds of burpees, followed by 30 seconds of rest!",
+        "Hold a plank for 4 minutes straight!",
+        "Perform 200 lunges as fast as possible!",
+        "Do a 5-minute non-stop ab circuit: 1 minute each of crunches, leg raises, bicycle crunches, heel touches, and sit-ups!",
+        "Complete 100 squat jumps without stopping!",
+        "Run in place for 3 minutes, then do 25 burpees!",
+        "Perform 5 rounds of 20 mountain climbers, 20 squats, and 20 push-ups!",
+        "Hold a bridge position for 5 minutes!",
+        "Do 150 jumping jacks as fast as possible!",
+        "Perform 50 sit-ups, followed by 50 push-ups, and finish with 50 air squats!",
+        "Do 3 rounds of 20 burpees and 20 lunges (10 per leg)!",
+        "Run stairs for 15 minutes, as fast as possible!",
+        "Hold a squat for 4 minutes straight, then do 50 squats!",
+        "Complete 5 rounds of 10 burpees, 10 push-ups, and 10 jump squats!",
+        "Hold a plank for 6 minutes, taking only 10-second breaks between each minute!"
+    ]
+
+    # Button to trigger a random Power Move
+    if st.button("Power Move"):
         st.success("Bring on the pain!")
+        # Randomly choose a challenge
+        challenge = random.choice(challenges)
+        st.write(f"**Today's Power Move:** {challenge}")
             
     if st.button("Generate Meal Plan!"):
         generated = True
