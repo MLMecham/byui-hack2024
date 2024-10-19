@@ -7,3 +7,4 @@ mongokey.txt
 database.py
 venv/
 .env*
+*.toml

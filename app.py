@@ -2,13 +2,13 @@ import streamlit as st
 from streamlit_pages import user_info, lift_lab, login, fitness_fuel, social
 from pathlib import Path
 import pymongo
+import os
 
 # Function to initialize the MongosDB
 @st.cache_resource
 def mongo_init():
     # Get the current file's directory
     current_dir = Path(__file__).resolve()
-    print(current_dir)
 
     # Construct the path to mongokey.txt
     secrets_file_path = current_dir.parent / ".streamlit" / "mongokey.txt"
@@ -16,9 +16,10 @@ def mongo_init():
     # Open the mongokey.txt file
     with secrets_file_path.open('r') as f:
         key = f.read()
-        return pymongo.MongoClient(key)
+        return pymongo.MongoClient(os.environ["db_key"])
     
 def display_profile():
+
     if st.session_state.profile is not None:
         st.image("streamlit_pages\images\FitForge2.png")
 
