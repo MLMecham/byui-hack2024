@@ -1,5 +1,4 @@
 import streamlit as st
-
 def account_creation(client, username, password, email):
     """ Authenticates and Creates the account
         Args():
@@ -66,5 +65,3 @@ def login(client):
     if st.button("Create Account"):
         # Here you should implement your own logic to store new users
         account_creation(client, new_username, new_password, new_email)
-
-    
