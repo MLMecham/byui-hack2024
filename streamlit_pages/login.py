@@ -17,11 +17,11 @@ def account_creation(client, username, password, email):
         # Create and add the account
         account = {
         "username": f"{username}",
-        "age": " ",
+        "age": 18,
         "email": f"{email}",
-        "height": " ",
-        "weight": " ",
-        "gender": " ",
+        "height": "0",
+        "weight": "0",
+        "gender": "Male",
         "password": f"{password}"
         }
         
@@ -48,7 +48,7 @@ def authentication(client, username, password):
     })
     if document != None:
         st.write("Logged In Succesfully!")
-        return True
+        return document
     st.write("Invalid Username or Password")
     return False
 
@@ -57,16 +57,14 @@ def login(client):
     username = st.text_input("Username", key="login_username")
     password = st.text_input("Password", type="password", key="login_password")
 
-    st.write("Stored Username: ", username)
-    st.write("Stored Password: ", password)
-
     if st.button("Login"):
-        authentication(client, username, password)
-
-    # if st.button("Create New Account"):
-    #     # st.session_state.page = "Register"
-    #     # if st.session_state.page == "Register":
-    #     register.register_page()  # Replace with show_settings() function
+        profile = authentication(client, username, password)  # Capture the returned profile
+        if profile:  # If authentication is successful
+            st.session_state.profile = profile  # Store the profile in session state
+            st.success("Logged in successfully!")
+            return profile  # Return the profile for further use
+        else:
+            st.error("Invalid Username or Password")  # Show error message for invalid login
 
     st.title("Create New User")
 
@@ -74,9 +72,5 @@ def login(client):
     new_password = st.text_input("Password", type="password", key="register_password")
     new_email = st.text_input("Email", key="register_email")
 
-    st.write("Stored Username: ", new_username)
-    st.write("Stored Password: ", new_password)
-
     if st.button("Create Account"):
-        # Here you should implement your own logic to store new users
         account_creation(client, new_username, new_password, new_email)
